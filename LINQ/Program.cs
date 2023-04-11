@@ -17,9 +17,9 @@ namespace Linq
                 new Soldier("Дима"),
             };
 
-            var teamA = soldiers.Where(soldier => soldier.Name.ToLower().Trim().StartsWith("б"));
+            var first = soldiers.Where(soldier => soldier.Name.ToLower().Trim().StartsWith("б"));
 
-            foreach (var soldier in teamA)
+            foreach (var soldier in first)
             {
                 Console.WriteLine(soldier.Name);
             }
