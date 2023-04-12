@@ -8,23 +8,46 @@ namespace Linq
     {
         public static void Main()
         {
-            List<Soldier> soldiers = new List<Soldier>()
+            List<Soldier> first = new List<Soldier>()
             {
-                new Soldier("Бажин В.В"),
-                new Soldier("Барышников Б.К"),
-                new Soldier("Бабушкин Д.В"),
+                new Soldier("Бежин В.В"),
+                new Soldier("Бакин В.В"),
+                new Soldier("Барышников К.К"),
+                new Soldier("Бабушкин А.В"),
                 new Soldier("Воронин К.Д"),
+                new Soldier("Воронин К.Д"),
+                new Soldier("Дима"),
                 new Soldier("Дима"),
             };
 
-            var first = soldiers.Where(soldier => soldier.Name.ToLower().Trim().StartsWith("б"));
+            List<Soldier> second = new List<Soldier>()
+            {
+                new Soldier("Бажин В.В"),
+                new Soldier("Бажин В.Ю"),
+                new Soldier("Барышников Б.К"),
+                new Soldier("Бабушкин Д.В"),
+            };
 
-            foreach (var soldier in first)
+
+             var TMP =  first.Where(soldier => soldier.Name.ToLower().Trim().StartsWith("б"));
+             first = first.Except(TMP).ToList();
+             second = second.Union(TMP).ToList();
+
+             SoldersInfo(first);
+             
+             Console.WriteLine(new string('_',40));
+
+           SoldersInfo(second);
+
+            Console.ReadKey();
+        }
+
+        public static void SoldersInfo(List<Soldier> solders)
+        {
+            foreach (var soldier in solders)
             {
                 Console.WriteLine(soldier.Name);
             }
-
-            Console.ReadKey();
         }
     }
 
