@@ -28,16 +28,15 @@ namespace Linq
                 new Soldier("Бабушкин Д.В"),
             };
 
+            var TMP = first.Where(soldier => soldier.Name.ToLower().Trim().StartsWith("б"));
+            first = first.Except(TMP).ToList();
+            second = second.Union(TMP).ToList();
 
-             var TMP =  first.Where(soldier => soldier.Name.ToLower().Trim().StartsWith("б"));
-             first = first.Except(TMP).ToList();
-             second = second.Union(TMP).ToList();
+            SoldersInfo(first);
 
-             SoldersInfo(first);
-             
-             Console.WriteLine(new string('_',40));
+            Console.WriteLine(new string('_', 40));
 
-           SoldersInfo(second);
+            SoldersInfo(second);
 
             Console.ReadKey();
         }
@@ -57,7 +56,7 @@ namespace Linq
         {
             Name = name;
         }
-        
+
         public string Name { get; }
     }
 }
