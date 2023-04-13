@@ -8,7 +8,7 @@ namespace Linq
     {
         public static void Main()
         {
-            List<Soldier> first = new List<Soldier>()
+            List<Soldier> firstTeam = new List<Soldier>()
             {
                 new Soldier("Бежин В.В"),
                 new Soldier("Бакин В.В"),
@@ -20,7 +20,7 @@ namespace Linq
                 new Soldier("Дима"),
             };
 
-            List<Soldier> second = new List<Soldier>()
+            List<Soldier> secondTeam = new List<Soldier>()
             {
                 new Soldier("Бажин В.В"),
                 new Soldier("Бажин В.Ю"),
@@ -28,15 +28,16 @@ namespace Linq
                 new Soldier("Бабушкин Д.В"),
             };
 
-            var TMP = first.Where(soldier => soldier.Name.ToLower().Trim().StartsWith("б"));
-            first = first.Except(TMP).ToList();
-            second = second.Union(TMP).ToList();
+            List<Soldier> temporaryTeam =
+                firstTeam.Where(soldier => soldier.Name.ToLower().Trim().StartsWith("б")).ToList();
+            firstTeam = firstTeam.Except(temporaryTeam).ToList();
+            secondTeam = secondTeam.Union(temporaryTeam).ToList();
 
-            SoldersInfo(first);
+            SoldersInfo(firstTeam);
 
             Console.WriteLine(new string('_', 40));
 
-            SoldersInfo(second);
+            SoldersInfo(secondTeam);
 
             Console.ReadKey();
         }
